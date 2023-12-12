@@ -1,4 +1,19 @@
-export default function useFetchJobs(parmas,page){
+import { useReducer } from "react"
+
+const ACTIONS={
+    MAKE_REQUEST:'make-request',
+    GET_DATA:'get-data',
+    ERROR:'error'
+}
+
+function reducer(state,action){
+
+}
+
+
+export default function useFetchJobs(params,page){
+    const[state,dispatch] =useReducer(reducer,{jobs:[],loading:false})
+    dispatch({type:'uuu',payload:{x:3}})
 return{
     jobs:[],
     loading:false,
