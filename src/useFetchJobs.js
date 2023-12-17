@@ -6,6 +6,7 @@ const ACTIONS = {
     GET_DATA: 'get-data',
     ERROR: 'error'
 }
+//jobs 
 const BASE_URL = 'https://jobs.github.com/positions.json';
 
 function reducer(state, action) {
@@ -30,6 +31,10 @@ export default function useFetchJobs(params, page) {
         dispatch({ type: ACTIONS.MAKE_REQUEST })
         axios.get(BASE_URL, {
             params: { markdown: true, page: page, ...params }
+        }).then(res=>{
+            dispatch({type:ACTIONS.GET_DATA,payload:{jobs:res.data}})
+        }).catch(e=>{
+            dispatch({type:ACTIONS.ERROR,payload:{error:e}})
         })
     }, [params, page])
 
