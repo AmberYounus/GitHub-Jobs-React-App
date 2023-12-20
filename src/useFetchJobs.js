@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 import { useEffect, useReducer } from "react"
 
 const ACTIONS = {
@@ -6,7 +6,7 @@ const ACTIONS = {
     GET_DATA: 'get-data',
     ERROR: 'error'
 }
-//jobs 
+//github jobs API 
 const BASE_URL = 'https://jobs.github.com/positions.json';
 
 function reducer(state, action) {
@@ -25,17 +25,22 @@ function reducer(state, action) {
 
 
 export default function useFetchJobs(params, page) {
-    const [state, dispatch] = useReducer(reducer, { jobs: [], loading: false })
+    const [state, dispatch] = useReducer(reducer, { jobs: [], loading: true })
 
     useEffect(() => {
+        const cancelToken =axios.CancelToken.source();
         dispatch({ type: ACTIONS.MAKE_REQUEST })
         axios.get(BASE_URL, {
+            cancelToken:cancelToken.token,
             params: { markdown: true, page: page, ...params }
-        }).then(res=>{
-            dispatch({type:ACTIONS.GET_DATA,payload:{jobs:res.data}})
-        }).catch(e=>{
-            dispatch({type:ACTIONS.ERROR,payload:{error:e}})
+        }).then(res => {
+            dispatch({ type: ACTIONS.GET_DATA, payload: { jobs: res.data } })
+        }).catch(e => {
+            dispatch({ type: ACTIONS.ERROR, payload: { error: e } })
         })
+        return()=>{
+            cancelToken.cancel()
+        }
     }, [params, page])
 
     return {
