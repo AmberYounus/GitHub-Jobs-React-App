@@ -1,11 +1,13 @@
+
 import axios from "axios";
 import { useEffect, useReducer } from "react"
 
 const ACTIONS = {
     MAKE_REQUEST: 'make-request',
     GET_DATA: 'get-data',
-    ERROR: 'error'
+    ERROR: 'error',
 }
+
 //github jobs API 
 const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json';
 //const BASE_URL = 'https://cors-anywhere.herokuapp.com';
