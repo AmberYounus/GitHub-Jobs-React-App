@@ -38,7 +38,7 @@ export default function useFetchJobs(params, page) {
         const cancelToken1 =axios.CancelToken.source();
         dispatch({ type: ACTIONS.MAKE_REQUEST })
         axios.get(BASE_URL, {
-            cancelToken:cancelToken.token,
+            cancelToken:cancelToken1.token,
             params: { markdown: true, page: page, ...params }
         }).then(res => {
             dispatch({ type: ACTIONS.GET_DATA, payload: { jobs: res.data } })
