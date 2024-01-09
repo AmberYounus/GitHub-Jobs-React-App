@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge, Button, Card } from "react-bootstrap";
 import ReactMarkdown from "react";
 
 export default function Job({ job }) {
+    const [open,setOpen]= useState(false)
     return (
 
         <Card>
@@ -24,7 +25,10 @@ export default function Job({ job }) {
                     </div>
                     <img className="d-none d-md-block" alt={job.company} src={job} />
                 </div>
-                <Card.Text><Button variant="primary" onClick={() => { }}></Button></Card.Text>
+                <Card.Text>
+                    <Button variant="primary" onClick={() => setOpen(prevOpen =>prevOpen)}>{open ? 'Hide Detials' : 'View Detials'}</Button>
+                </Card.Text>
+
             </Card.Body>
         </Card>
 
