@@ -8,7 +8,7 @@ export default function Job({ job }) {
     
     return (
 
-        <Card>
+        <Card className="mb-3">
             <Card.Body>
                 <div className="d-flex justify-content-between">
                     <div>
@@ -25,7 +25,7 @@ export default function Job({ job }) {
                         </div>
 
                     </div>
-                    <img className="d-none d-md-block" alt={job.company} src={job.company_logo} />
+                    <img className="d-none d-md-block" alt={job.company} src={job.company_logo} height="70" />
                 </div>
 
                 <Card.Text>

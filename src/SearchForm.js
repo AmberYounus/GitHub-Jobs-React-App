@@ -12,7 +12,7 @@ export default function SearchForm({onParamChange,params}){
             <Form.Label>Location</Form.Label>
             <Form.Control  type="text" name="location" value={params.location} onChange={onParamChange}/>
         </Form.Group>
-        <Form.Group as={Col} className="ml-2">
+        <Form.Group as={Col} xs="auto" className="ml-2">
             <Form.Check type="checkbox" className="mb-2" name="full_time" id="full-time" value={params.full_time} label="Only Full time" onChange={onParamChange}/>
         </Form.Group>
     </Form.Row>
