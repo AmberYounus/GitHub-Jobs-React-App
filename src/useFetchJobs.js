@@ -11,8 +11,7 @@ const ACTIONS = {
 
 //github jobs API 
 const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json';
-//const BASE_URL = 'https://cors-anywhere.herokuapp.com';
-//const BASE_URL = 'https://jobs.github.com/positions.json';
+
 
 function reducer(state, action) {
     //  action.payload.x
@@ -26,7 +25,7 @@ function reducer(state, action) {
         case ACTIONS.UPDATE_HAS_NEXT_PAGE:
             return { ...state,hasNextPage:action.payload.hasNextPage }
         default:
-            return state
+            return state;
     }
 }
 
