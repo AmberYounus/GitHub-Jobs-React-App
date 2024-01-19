@@ -16,9 +16,14 @@ function App() {
     const param = e.target.name
     const value = e.target.value
     setPage(1)
-    setParams(prevParams => {
-      return { ...prevParams, [param]: value }
-    })
+    try {
+      setParams((prevParams) => {
+        return { ...prevParams, [param]: value };
+      });
+    } catch (error) {
+      console.error("Error updating params state:", error);
+    }
+   
   }
   return (
     <>
@@ -27,7 +32,7 @@ function App() {
         <SearchForm params={params} onParamChange={handleParamChange} />
         <JobsPagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
         {loading && <h1>Loading....</h1>}
-        {error && <h1>Error .Try Refreshing....</h1>}
+        {error && <h1>Error :{error}</h1>}
         {/* <h1>{jobs.length}</h1> */}
         {jobs.map(job => {
           return <Job key={job.id} job={job} />

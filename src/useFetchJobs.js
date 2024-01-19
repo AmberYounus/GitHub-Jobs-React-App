@@ -8,10 +8,26 @@ const ACTIONS = {
     ERROR: 'error',
     UPDATE_HAS_NEXT_PAGE:'update-has-next-page '
 }
+let url1 = 'https://jobs.github.com/positions.json'
+let data = {
+  description: 'javascript',
+  location: 'san francisco',
+}
+
+let params = Object.keys(data).map(key => key + '=' + encodeURIComponent(data[key])).join('&');
+let fullUrl = `${url1}?${params}`;
 
 //github jobs API 
+//Missing required request header. Must specify one of: origin,x-requested-with
 const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json';
+const url = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json';
 
+// const url = "https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=python&location=new+york";
+
+fetch(url)
+.then(response => response.json())
+.then(data => console.log("data "+data))
+.catch(err => console.log("error"+err.name))
 
 function reducer(state, action) {
     //  action.payload.x
